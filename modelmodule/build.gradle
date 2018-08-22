@@ -3,15 +3,16 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.fitufdv'
+group = prop.jitpackGroup
 
 android {
-    compileSdkVersion versions.compileSdk
+    compileSdkVersion prop.compileSdk.toInteger()
     defaultConfig {
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.targetSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
+        minSdkVersion prop.minSdk.toInteger()
+        targetSdkVersion prop.targetSdk.toInteger()
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -23,13 +24,13 @@ android {
 
 dependencies {
     // region Kotlin
-    api deps.kotlin.stdlib
-    api deps.kotlin.anko
+    implementation prop.kotlinStdlib
+    implementation prop.kotlinAnko
     // endregion
 
     // region Room
-    api deps.storage.roomRuntime
-    api deps.storage.roomRx
-    kapt deps.storage.roomCompiler
+    implementation prop.roomRuntime
+    implementation prop.roomRx
+    kapt prop.roomCompiler
     // endregion
 }

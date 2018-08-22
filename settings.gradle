@@ -1,1 +1,2 @@
 include ':app', ':modelmodule'
+includeFlat 'keys'
